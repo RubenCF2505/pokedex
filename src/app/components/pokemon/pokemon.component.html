@@ -1,6 +1,19 @@
-@if (pokemonData!=null) {
-<div class="block m-auto w-fit border shadow-md ">
-  <img src="{{ urlImg + id }}.png" class="w-96 h-96 my-10 mx-5" />
-  <p class="text-center uppercase">{{ pokemonData.name }}</p>
+@if (loading) {
+  <div class="flex flex-col items-center justify-center h-screen pointer-events-none bg-gray-100 text-dark ">
+    <img src="../../../assets/pokeball.gif" alt="Loading GIF" class="max-w-full max-h-80vh h-40">
+    <p>Loading, please wait...</p>
+  </div>
+}@else {
+  @if(pokemonData){
+<div class="container border mx-auto">
+  <div class="justify-between flex">
+    <div class="before py-10 px-12 m-2 cursor-pointer bg-cyan-600" (click)="pokemonBefore()">before</div>
+    <div class="after py-10 px-14 m-2 cursor-pointer bg-cyan-600" (click)="pokemonAfter()">after</div>
+  </div>
+  <div class="block mx-auto w-fit border shadow-md text-center">
+    <img src="{{ urlImg + id }}.png" class="w-96 h-96 my-10 mx-5" />
+    <p class="text-uppercase">{{ pokemonData.name }}</p>
+  </div>
 </div>
+  }
 }
