@@ -5,12 +5,13 @@
   </div>
 }@else {
   @if(pokemonData){
+    <app-header></app-header>
 <div class="container border mx-auto">
-  <div class="justify-between flex">
-    <div class="before py-10 px-12 m-2 cursor-pointer bg-cyan-600" (click)="pokemonBefore()">before</div>
-    <div class="after py-10 px-14 m-2 cursor-pointer bg-cyan-600" (click)="pokemonAfter()">after</div>
+  <div class="justify-between flex container">
+    <div class="prev h-20 margin border-black mx-1 pl-5 w-1/2  cursor-pointer bg-cyan-600" (click)="prevPokemon()">Previous</div>
+    <div class="next w-1/2 cursor-pointer mx-1 text-center bg-cyan-600" (click)="nextPokemon()">Next</div>
   </div>
-  <div class="block mx-auto w-fit border shadow-md text-center">
+  <div class="block m-auto w-fit border shadow-md text-center">
     <img src="{{ urlImg + id }}.png" class="w-96 h-96 my-10 mx-5" />
     <p class="text-uppercase">{{ pokemonData.name }}</p>
   </div>

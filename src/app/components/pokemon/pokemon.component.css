@@ -1,7 +1,26 @@
-.before{
-    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+.prev{
+    background-color: #FFCC00; /* Pikachu's yellow */
+    clip-path: polygon(100% 0, 100% 35%, 50% 35%, 35% 75%, 0 75%, 0 0);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.prev:hover {
+    transform: scale(1.02); /* Slightly increase size on hover */
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+}
+
+
+.next{
+    background-color: #FFCC00; /* Pikachu's yellow */
+    clip-path: polygon(100% 0, 100% 75%, 66% 75%, 46% 35%, 0 35%, 0 0);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+
+    .next:hover {
+        transform: scale(1.02); /* Slightly increase size on hover */
+        box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+    }
     
-}
-.after{
-    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-}
+    .margin{
+        margin: 0 auto;
+    }

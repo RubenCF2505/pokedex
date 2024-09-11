@@ -5,4 +5,5 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
 export const routes: Routes = [
   { path: '', component: DisplayComponent },
   { path: ':id', component: PokemonComponent },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
 ];

@@ -2,11 +2,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pokemon } from '../../pokemon';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-pokemon',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule, HeaderComponent],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.css',
 })
@@ -29,18 +30,20 @@ export class PokemonComponent {
       this.pokemonData = data;
     });
   }
-  pokemonBefore() {
+  prevPokemon() {
     this.loading = true;
     this.timeout();
-    this.id -= 1;
-    this.router.navigate([`pokemon:${this.id}`]);
-    this.getInfo(this.id);
+    if (this.id > 1) {
+      this.id -= 1;
+      this.router.navigate([`pokemon:${this.id}`]);
+      this.getInfo(this.id);
+      this.router.navigate([`pokemon:${this.id}`]);
+    }
   }
-  pokemonAfter() {
+  nextPokemon() {
     this.loading = true;
     this.timeout();
     this.id = parseInt(this.id) + 1;
-
     this.router.navigate([`pokemon:${this.id}`]);
     this.getInfo(this.id);
   }
