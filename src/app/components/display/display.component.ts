@@ -17,6 +17,13 @@ import { Environment } from '../../environments';
 import { HeaderComponent } from '../header/header.component';
 import { LeftMenuComponent } from '../left-menu/left-menu.component';
 import { fromEvent, map, tap } from 'rxjs';
+/**
+ * To Do:
+ * Create a select element to show pokemons from different habitats
+ * create a select element to choose between different languages
+ * Create a differents routes to navigate into side bar menus items
+ * Add data to the display like type or id
+ */
 
 @Component({
   selector: 'app-display',
@@ -29,15 +36,16 @@ export class DisplayComponent {
   constructor(private router: Router) {}
   url = 'https://pokeapi.co/api/v2/';
   httpClient = inject(HttpClient);
+  typeImg = Environment.typeImg;
   urlImg = Environment.urlImg;
   data: any;
-  AmountPokemon=20;
-   countPokemon  !: number ;
-  getCount(){
+  AmountPokemon = 20;
+  countPokemon!: number;
+  getCount() {
     this.httpClient
-     .get(`${this.url}pokemon?limit=100000&offset=0`)
-     .subscribe((data: any) => {
-       this.countPokemon= data.count;
+      .get(`${this.url}pokemon?limit=100000&offset=0`)
+      .subscribe((data: any) => {
+        this.countPokemon = data.count;
       });
   }
   @ViewChild('scrollableDiv', { static: false }) scrollableDiv!: ElementRef;
@@ -52,10 +60,19 @@ export class DisplayComponent {
       .subscribe((data: any) => {
         this.data = data.results;
       });
+      
   }
 
   onClick(id: number) {
     this.router.navigate([`pokemon:${id}`]);
+  }
+
+  getType() {
+    this.data.forEach((pokemon: any) => {
+      this.httpClient.get(pokemon.url).subscribe((data: any) => {
+        pokemon.types = data.types;
+      });
+    });
   }
   @HostListener('scroll', ['$event'])
   onDivScroll(event: Event) {
@@ -67,7 +84,7 @@ export class DisplayComponent {
     // Comprobar si el scroll está cerca del final (menos de 100px para llegar)
     const nearBottom = scrollTop + divHeight >= scrollHeight - 200;
 
-    if (nearBottom && this.AmountPokemon<this.countPokemon) {
+    if (nearBottom && this.AmountPokemon < this.countPokemon) {
       this.AmountPokemon += 10; // Incrementar la variable AmountPokemon
       this.getData(); // Llamada para obtener más datos
     }

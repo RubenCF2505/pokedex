@@ -7,7 +7,8 @@
     </div>
     <div class="border col-span-10 container">
       <div
-        class="flex flex-wrap align-middle pb-16 top-1/2 h-screen overflow-scroll items-center justify-center w-full" (scroll)="onDivScroll($event)"
+        class="flex flex-wrap align-middle pb-16 top-1/2 h-screen overflow-scroll items-center justify-center w-full"
+        (scroll)="onDivScroll($event)"
       >
         @for (item of data ; track $index) {
         <div
@@ -19,6 +20,15 @@
             class="block m-auto h-40"
           />
           <p class="m-2">{{ item.name }}</p>
+          
+          <div>
+            <img
+              
+              src=""
+              alt=""
+              class="block m-auto h-4"
+            />
+          </div>
         </div>
         }
       </div>
