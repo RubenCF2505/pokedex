@@ -5,7 +5,7 @@ import { SelectComponent } from '../select/select.component';
 
 @Component({
     selector: 'app-header',
-    imports: [RouterModule, CommonModule, SelectComponent],
+    imports: [RouterModule, CommonModule],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css'
 })

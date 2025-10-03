@@ -6,6 +6,7 @@ import { HeaderComponent } from '../header/header.component';
 import { Environment } from '../../environments';
 import { Specie } from '../../specie';
 import { VersioningService } from '../../services/versioning.service';
+import { SelectComponent } from '../select/select.component';
 
 @Component({
     selector: 'app-pokemon',
@@ -13,7 +14,7 @@ import { VersioningService } from '../../services/versioning.service';
         // TODO: `HttpClientModule` should not be imported into a component directly.
         // Please refactor the code to add `provideHttpClient()` call to the provider list in the
         // application bootstrap logic and remove the `HttpClientModule` import from this component.
-         HeaderComponent
+         HeaderComponent, SelectComponent
     ],
     templateUrl: './pokemon.component.html',
     styleUrl: './pokemon.component.css'
@@ -65,6 +66,8 @@ getInfo(idOrName: number | string) {
 
 getText() {
   const entries = this.pokemonSpecie?.flavor_text_entries || [];
+
+  
   const seen = new Set<string>();
 
   this.textList = entries
