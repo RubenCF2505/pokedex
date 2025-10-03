@@ -1,0 +1,51 @@
+// Custom Theming for Angular Material
+@use '@angular/material' as mat;
+
+// Incluye estilos base (solo una vez)
+@include mat.core();
+
+// 🎨 Paleta personalizada: Pokémon (amarillo eléctrico y rojo Pokéball)
+$pokedex-primary: mat.define-palette((
+  50: #fff8e1,
+  100: #ffecb3,
+  200: #ffe082,
+  300: #ffd54f,
+  400: #ffca28,
+  500: #FFCB05, // Pikachu Yellow
+  600: #fbc02d,
+  700: #E2A600, // Más oscuro
+  800: #f9a825,
+  900: #f57f17,
+  A100: #ffff8d,
+  A200: #ffff00,
+  A400: #ffea00,
+  A700: #ffd600,
+  contrast: (
+    500: #000,
+    600: #000,
+    700: #000,
+    800: #000,
+    900: #000,
+    A100: #000,
+    A200: #000,
+    A400: #000,
+    A700: #000,
+  )
+));
+
+$pokedex-accent: mat.define-palette(mat.$red-palette, 700, 500, 900); // Pokéball Red
+$pokedex-warn: mat.define-palette(mat.$red-palette);
+
+// 💡 Define el tema claro
+$pokedex-theme: mat.define-light-theme((
+  color: (
+    primary: $pokedex-primary,
+    accent: $pokedex-accent,
+    warn: $pokedex-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Aplica el tema a todos los componentes usados
+@include mat.all-component-themes($pokedex-theme);

@@ -5,7 +5,7 @@ import { TypesComponent } from './components/types/types.component';
 
 export const routes: Routes = [
   { path: '', component: DisplayComponent },
-  { path: ':id', component: PokemonComponent },
+  { path: 'pokemon/:id', component: PokemonComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path:"types",component:TypesComponent },
 ];

@@ -8,6 +8,7 @@ export interface Pokemon {
   height: number;
   is_default: boolean;
   location_area_encounters: string;
+  id:number;
   moves: [
     {
       move: { name: string; url: string };

@@ -1,20 +1,52 @@
 @if (loading) {
-  <div class="flex flex-col items-center justify-center h-screen pointer-events-none bg-gray-100 text-dark ">
-    <img src="../../../assets/pokeball.gif" alt="Loading GIF" class="max-w-full max-h-80vh h-40">
-    <p>Loading, please wait...</p>
-  </div>
-}@else {
-  @if(pokemonData){
-    <app-header></app-header>
-<div class="container border mx-auto">
+<div
+  class="flex flex-col items-center justify-center h-screen pointer-events-none bg-gray-100 text-dark"
+>
+  <img
+    src="../../../assets/pokeball.gif"
+    alt="Loading GIF"
+    class="max-w-full max-h-80vh h-40"
+  />
+  <p>Loading, please wait...</p>
+</div>
+}@else { @if(pokemonData ){
+<app-header></app-header>
+<div class="container border mx-auto h-auto">
   <div class="justify-between flex container">
-    <div class="prev h-20 margin border-black mx-1 pl-5 w-1/2  cursor-pointer bg-cyan-600" (click)="prevPokemon()">Previous</div>
-    <div class="next w-1/2 cursor-pointer mx-1 text-center bg-cyan-600" (click)="nextPokemon()">Next</div>
+    <div
+      class="prev h-20 margin border-black mx-1 pl-5 w-1/2 cursor-pointer"
+      (click)="prevPokemon()"
+    >
+      Previous
+    </div>
+    <div
+      class="next w-1/2 cursor-pointer mx-1 text-center "
+      (click)="nextPokemon()"
+    >
+      Next
+    </div>
   </div>
-  <div class="block m-auto w-fit border shadow-md text-center">
-    <img src="{{ urlImg + id }}.png" class="w-96 h-96 my-10 mx-5" />
-    <p class="text-uppercase">{{ pokemonData.name }}</p>
+  <div class="flex w-full max-w-4xl mx-auto border shadow-md p-4">
+    <!-- Imagen del Pokémon -->
+    <img src="{{ urlImg + pokemonData.id }}.png" class="w-60 h-60 object-contain" />
+
+    <!-- Info del Pokémon -->
+    <div class="flex flex-col justify-center w-full pl-6">
+      <p class="uppercase text-2xl font-bold mb-4">{{ pokemonData.name }}</p>
+      @for(item of textList;track $index){
+
+      <p>{{ item +"\n"}}</p>
+      }
+
+      <!-- Imágenes de tipos en una línea -->
+      <div class="flex gap-2">
+        @for (item of pokemonData.types; track $index) {
+        <img class="h-4" src="{{ urlType + typeList[$index] }}.png" />
+        }
+      </div>
+    </div>
+    <div class="flex border "> e</div>
   </div>
 </div>
-  }
-}
+
+}}
