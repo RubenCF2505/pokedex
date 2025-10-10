@@ -12,8 +12,7 @@
 }@else { @if(pokemonData ){
 <app-header></app-header>
 
-<div class="container border mx-auto h-auto">
-  
+<div class="container mx-auto h-auto">
   <div class="justify-between flex container">
     <div
       class="prev h-20 margin border-black mx-1 pl-5 w-1/2 cursor-pointer"
@@ -22,35 +21,49 @@
       Previous
     </div>
     <div
-      class="next w-1/2 cursor-pointer mx-1 text-center "
+      class="next w-1/2 cursor-pointer mx-1 text-center"
       (click)="nextPokemon()"
     >
       Next
     </div>
   </div>
-<app-select class="float-right"></app-select>
-
-  <div class="flex w-full max-w-4xl mx-auto border shadow-md p-4">
-    <!-- Imagen del Pokémon -->
-    <img src="{{ urlImg + pokemonData.id }}.png" class="w-60 h-60 object-contain" />
-
-    <!-- Info del Pokémon -->
-    <div class="flex flex-col justify-center w-full pl-6">
-      <p class="uppercase text-2xl font-bold mb-4">{{ pokemonData.name }}</p>
-      @for(item of textList;track $index){
-
-      <p>{{ item +"\n"}}</p>
-      }
-
-      <!-- Imágenes de tipos en una línea -->
-      <div class="flex gap-2">
-        @for (item of pokemonData.types; track $index) {
-        <img class="h-4" src="{{ urlType + typeList[$index] }}.png" />
+  <div class="flex w-full max-w-4xl mx-auto border shadow-md p-4 flex-col">
+    <!-- Contenido superior (imagen + info) -->
+    <div class="flex w-full">
+      <img
+        src="{{ urlImg + pokemonData.id }}.png"
+        class="w-60 h-60 mr-10 object-contain"
+      />
+      <div class="flex flex-col justify-center w-full pl-6">
+        <p class="uppercase text-2xl font-bold mb-4">{{ pokemonData.name }}</p>
+        @for(item of textList; track $index){
+        <p>{{ item }}</p>
         }
+        <div class="flex gap-2">
+          @for (item of pokemonData.types; track $index) {
+          <img class="h-4" src="{{ urlType + typeList[$index] }}.png" />
+          }
+        </div>
       </div>
     </div>
-    <div class="flex border "> e</div>
+
+    <div
+      class="w-full mt-4 text-center align-middle mb-10 flex flex-wrap justify-end gap-4"
+      id="evolutionData"
+    >
+      @for (item of evolutionChain; track $index) {
+      
+        <div
+          class="w-24 h-24 border-gray-300 flex items-center justify-center shadow hover:shadow-lg transition-shadow duration-200"
+         (click)="onClick(item)">
+          <img
+            class="w-16 h-16 shadow-sm"
+            src="{{ urlImg + getPokemonId(item) + '.png' }}"
+            alt="Pokémon Image"
+          />
+        </div>
+      }
+    </div>
   </div>
 </div>
-
 }}

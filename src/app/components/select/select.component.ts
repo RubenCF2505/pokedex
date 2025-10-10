@@ -8,6 +8,8 @@ import { VersioningService } from '../../services/versioning.service';
 import { Versions } from '../../versions';
 import { Version } from '../../typeVersion';
 import { forkJoin, switchMap } from 'rxjs';
+import { Environment } from '../../environments';
+
 @Component({
   selector: 'app-select',
   imports: [CommonModule, MatFormFieldModule, MatSelectModule, FormsModule],
@@ -22,7 +24,7 @@ export class SelectComponent {
   datalist: Version[] = [];
   selectedVersion: string = 'red';
   maxVersions: number = 0;
-
+  species=Environment.urlSpecie;
   ngOnInit() {
     this.getInfo();
 
@@ -50,6 +52,8 @@ export class SelectComponent {
     this.filter(this.datalist);
   }
 
+
+  
   filter(lista: Version[]) {
     console.log(lista.map((data) => data.names));
   }
